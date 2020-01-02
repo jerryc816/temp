@@ -1,0 +1,6 @@
+#查詢schema
+SELECT * FROM user_col_comments WHERE table_name = 'TEST2'; // 查出表的'欄位備註'
+SELECT * FROM user_tab_columns WHERE table_name = 'TEST2';  // 查出表的'欄位定義' (不含欄位備註)
+SELECT * FROM dba_tables WHERE table_name = 'TEST2';        // 查出表的'空間配置' (OWNER就是schema)
+# list all tables in a schema
+https://stackoverflow.com/questions/2247310/how-do-i-list-all-tables-in-a-schema-in-oracle-sql
