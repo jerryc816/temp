@@ -88,19 +88,21 @@ public class XlsWriter {
             // 使用 CreationHelper 建立日期格式、超連結、RichTextString...etc
             CreationHelper createHelper = workbook.getCreationHelper();
 
-            // 設定字型樣式(for 標題列)
+            // 字型樣式(for標題列)
             Font headerFont = workbook.createFont();
             headerFont.setBoldweight((short) 3); // 字粗
             headerFont.setFontHeightInPoints((short) 14); // 字高
             //headerFont.setColor(IndexedColors.RED.getIndex()); // 顏色
             
-            // 設定儲存格樣式(for標題列)
+            // 儲存格樣式(for標題列)
             CellStyle headerCellStyle = workbook.createCellStyle();
             headerCellStyle.setFont(headerFont); // 字型           
-            headerCellStyle.setFillBackgroundColor(HSSFColor.GREY_25_PERCENT.index); // 背景色
-            headerCellStyle.setFillPattern((short)2); // 背景填滿
             
-            // 設定儲存格樣式(for日期格式)
+            // 背景色-色碼表 https://blog.csdn.net/DrifterJ/article/details/46662277
+            headerCellStyle.setFillForegroundColor(IndexedColors.GREY_25_PERCENT.getIndex()); // 背景色
+            headerCellStyle.setFillPattern(CellStyle.SOLID_FOREGROUND); // 背景填滿
+            
+            // 儲存格樣式(for日期格式)
             CellStyle dateCellStyle = workbook.createCellStyle();
             dateCellStyle.setDataFormat(createHelper.createDataFormat().getFormat("dd-MM-yyyy"));
 
@@ -122,20 +124,26 @@ public class XlsWriter {
             for (HashMap<String,String> datarow : rows) {
                 Row row = sheet.createRow(rowNum++);
 
-                // TODO 動態讀map
-                row.createCell(0).setCellValue(datarow.get("Name"));
-                row.createCell(1).setCellValue(datarow.get("Email"));
-                row.createCell(2).setCellValue(datarow.get("Salary"));
-                Cell dateCell = row.createCell(3);
-                dateCell.setCellValue(datarow.get("Birthday"));
-                dateCell.setCellStyle(dateCellStyle);
+                for (int i = 0; i < columns.length; i++) {
+                    row.createCell(i).setCellValue(datarow.get(columns[i]));
+                }
             }
 
             // 重設儲存格大小，以符合內容寬度
             // for (int i = 0; i < columns.length; i++) {
             //     sheet.autoSizeColumn(i);
             // }
+            
+            // 設定欄寬
+            sheet.setColumnWidth(0, 10*256);
+            sheet.setColumnWidth(1, 20*256);
+            sheet.setColumnWidth(2, 10*256);
+            sheet.setColumnWidth(3, 15*256);
 
+            // 凍結窗格
+            //sheet.createFreezePane(3, 1, 5, 2); // 在研究
+            sheet.createFreezePane(0, 1); // 凍結首列
+            
             // 輸出到檔案中，未指定路徑則在專案根目錄中
             FileOutputStream fileOut = new FileOutputStream(xlsPath);
             workbook.write(fileOut);

@@ -18,3 +18,14 @@ SELECT column_name FROM all_cons_columns WHERE constraint_name = (
 // 查出表的'空間配置' (OWNER就是schema)
 SELECT * FROM dba_tables WHERE table_name = 'TEST2';        
 
+// 查出表的 PK,FK
+select a.column_name, b.key
+from (
+  SELECT constraint_name,column_name 
+  FROM all_cons_columns where table_name = 'USERS'
+) a, (
+  SELECT constraint_name,( case constraint_type when 'P' then 'PK' when 'R' then 'FK' end ) KEY
+  FROM user_constraints WHERE table_name = 'USERS'
+  AND (constraint_type = 'P' or constraint_type = 'R')
+) b
+where a.constraint_name = b.constraint_name;
