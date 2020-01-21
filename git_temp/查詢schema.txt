@@ -21,4 +21,8 @@ from (
 where a.constraint_name = b.constraint_name;
 
 // 查出表的'空間配置' (OWNER就是schema)
-SELECT * FROM dba_tables WHERE table_name = 'TEST2';        
+SELECT * FROM dba_tables WHERE table_name = 'TEST2';      
+
+// 查出表的'索引欄位'
+SELECT * FROM all_ind_columns
+WHERE table_name = 'USERS';  
