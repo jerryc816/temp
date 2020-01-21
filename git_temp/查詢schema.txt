@@ -1,22 +1,12 @@
-#查詢schema
-# get tables by schema
-https://stackoverflow.com/questions/2247310/how-do-i-list-all-tables-in-a-schema-in-oracle-sql
-SELECT table_name  from all_tables where owner = 'YOURSCHEMA';
+#查詢 table schema
+// 查出 schema 的所有 tables
+SELECT table_name from all_tables where owner = 'YOURSCHEMA';
 
 // 查出表的'欄位定義' (不含欄位備註)
 SELECT * FROM user_tab_columns WHERE table_name = 'TEST2';  
 
 // 查出表的'欄位備註'
 SELECT * FROM user_col_comments WHERE table_name = 'TEST2'; 
-
-// 查出表的'主鍵'(PK)
-SELECT column_name FROM all_cons_columns WHERE constraint_name = (
-  SELECT constraint_name FROM user_constraints 
-  WHERE UPPER(table_name) = UPPER('tableName') AND CONSTRAINT_TYPE = 'P'
-);
-
-// 查出表的'空間配置' (OWNER就是schema)
-SELECT * FROM dba_tables WHERE table_name = 'TEST2';        
 
 // 查出表的 PK,FK
 select a.column_name, b.key
@@ -29,3 +19,6 @@ from (
   AND (constraint_type = 'P' or constraint_type = 'R')
 ) b
 where a.constraint_name = b.constraint_name;
+
+// 查出表的'空間配置' (OWNER就是schema)
+SELECT * FROM dba_tables WHERE table_name = 'TEST2';        
