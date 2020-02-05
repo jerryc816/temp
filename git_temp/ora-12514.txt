@@ -12,6 +12,11 @@ https://www.oracle.com/database/technologies/faq-jdbc.html
 
 加大 pool maxActive
 
+用 try catch 測試連結是否存活
+
+pool timeout
+https://confluence.atlassian.com/confkb/handling-oracle-database-connection-pool-closed-connection-errors-224395458.html
+
 try
 (1)在oracle服務器上的 $ORACLE_HOME/network/admin/tnsnames.ora中將
 server = destination 設置為 server = shared，以一次允許多個連接。重新啟動oracle。
