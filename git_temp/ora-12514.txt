@@ -1,0 +1,22 @@
+no more data to read from socket
+ora 12514
+----------------------------------------------------------------------
+https://stackoverflow.com/questions/7839907/no-more-data-to-read-from-socket-error/7844985
+
+確認版本 oracle v jdbc v jdk
+https://www.oracle.com/database/technologies/faq-jdbc.html
+
+確認 oracle log
+
+確認 oracle session數
+
+加大 pool maxActive
+
+try
+(1)在oracle服務器上的 $ORACLE_HOME/network/admin/tnsnames.ora中將
+server = destination 設置為 server = shared，以一次允許多個連接。重新啟動oracle。
+
+(2)In java/jdk1.6.0_31/jre/lib/security/Java.security 
+securerandom.source=file:/dev/urandom change to 
+securerandom.source=file:///dev/urandom
+
