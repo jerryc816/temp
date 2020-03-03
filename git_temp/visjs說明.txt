@@ -1,0 +1,29 @@
+vis.js官網 
+https://github.com/almende/vis
+
+各種圖表(分類): Network(網路圖)、Timeline、Graph2d、Graph3d、DataSet
+http://visjs.org/
+view example	查分類圖的各種範例 & 事件 
+view doc	查分類圖的api文件
+---------------------------------------------------
+開源許可證(版權):
+MIT、Apache 2.0
+---------------------------------------------------
+載入visjs套件:
+<script src="lib/vis.js" type="text/javascript"></script>
+<link href="lib/vis-network.min.css" rel="stylesheet" type="text/css" />
+
+參數設定: 	
+http://visjs.org/docs/network/
+Modules=所有元件> 點入元件> 切換到 full option <= 列出全部可設定選項
+透過UI產生設定:
+http://visjs.org/examples/network/other/configuration.html
+
+已知問題:
+當太多節點時，畫面渲染會變慢
+https://github.com/almende/vis/issues/2558
+解決方案,待測
+https://stackoverflow.com/questions/32649792/vis-js-slow-with-many-nodes-edges
+
+
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              
