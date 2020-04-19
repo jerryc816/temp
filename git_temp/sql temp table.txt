@@ -10,9 +10,17 @@ CREATE TEMPORARY TABLE temp_table(...); //TEMPORARY 可縮寫為 TEMP
 SQLServer
 SELECT columns INTO @temp FROM table1; //會自動drop, 用#temp不會自動drop
 
+where 1<>1;
 -------------------------------------------------------------------------
+了解原sql邏輯
 
-若不想倒資料進去,只想複製欄位到temp表,則加上 where 1<>1;
+拆出子sql
 
+撈出資料，用程式處理db函數
 
+建temp table、建索引
+
+回寫到temp table
+
+將temp table崁回原sql
 
