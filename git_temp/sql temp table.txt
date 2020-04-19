@@ -1,0 +1,18 @@
+Mysql
+CREATE TEMPORARY TABLE IF NOT EXISTS table2 AS (SELECT * FROM table1);
+
+Oracle
+CREATE GLOBAL TEMPORARY TABLE table2 ON COMMIT PRESERVE ROWS AS select * from table1;
+
+PostgreSQL
+CREATE TEMPORARY TABLE temp_table(...); //TEMPORARY 可縮寫為 TEMP
+
+SQLServer
+SELECT columns INTO @temp FROM table1; //會自動drop, 用#temp不會自動drop
+
+-------------------------------------------------------------------------
+
+若不想倒資料進去,只想複製欄位到temp表,則加上 where 1<>1;
+
+
+
