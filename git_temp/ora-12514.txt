@@ -25,3 +25,4 @@ server = destination 設置為 server = shared，以一次允許多個連接。�
 securerandom.source=file:/dev/urandom change to 
 securerandom.source=file:///dev/urandom
 
+12514
